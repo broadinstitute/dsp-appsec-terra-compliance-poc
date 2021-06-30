@@ -3,9 +3,7 @@
   "handler": "Microsoft.Azure.CreateUIDef",
   "version": "0.1.2-preview",
   "parameters": {
-    "basics": [
-      {}
-    ],
+    "basics": [{}],
     "steps": [
       {
         "name": "storageConfig",
@@ -20,18 +18,15 @@
             "name": "storageAccounts",
             "type": "Microsoft.Storage.MultiStorageAccountCombo",
             "label": {
-              "prefix": "Storage account name prefix",
-              "type": "Storage account type"
+              "type": "Storage account type",
+              "prefix": "Storage account name prefix"
             },
             "defaultValue": {
-              "type": "Standard_LRS"
+              "type": "Standard_LRS",
+              "prefix": "comppoc"
             },
             "constraints": {
-              "allowedTypes": [
-                "Premium_LRS",
-                "Standard_LRS",
-                "Standard_GRS"
-              ]
+              "allowedTypes": ["Premium_LRS", "Standard_LRS", "Standard_GRS"]
             }
           }
         ]
