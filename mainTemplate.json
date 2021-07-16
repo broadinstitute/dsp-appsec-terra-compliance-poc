@@ -8,6 +8,18 @@
     "storageAccountType": {
       "type": "string"
     },
+    "securityAutomationNamePrefix": {
+      "type": "string"
+    },
+    "eventHubConnectionString": {
+      "type": "string"
+    },
+    "eventHubResourceId": {
+      "type": "string"
+    },
+    "eventHubPolicyName": {
+      "type": "string"
+    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]"
@@ -69,7 +81,8 @@
     }
   },
   "variables": {
-    "storageAccountName": "[concat(parameters('storageAccountNamePrefix'), uniqueString(resourceGroup().id))]"
+    "storageAccountName": "[concat(parameters('storageAccountNamePrefix'), uniqueString(resourceGroup().id))]",
+    "securityAutomationName": "[concat(parameters('securityAutomationNamePrefix'), uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
@@ -97,6 +110,42 @@
       "copy": {
         "name": "policyAssignments",
         "count": "[length(parameters('policyDefinitions'))]"
+      }
+    },
+    {
+      "type": "Microsoft.Security/automations",
+      "apiVersion": "2019-01-01-preview",
+      "name": "[variables('securityAutomationName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "scopes": [
+          {
+            "scopePath": "[resourceGroup().id]",
+            "description": "Security Center resource group"
+          }
+        ],
+        "sources": [
+          {
+            "eventSource": "Alerts"
+          },
+          {
+            "eventSource": "Assessments"
+          },
+          {
+            "eventSource": "RegulatoryComplianceAssessment"
+          },
+          {
+            "eventSource": "SecureScores"
+          }
+        ],
+        "actions": [
+          {
+            "actionType": "EventHub",
+            "connectionString": "[parameters('eventHubConnectionString')]",
+            "eventHubResourceId": "[parameters('eventHubResourceId')]",
+            "sasPolicyName": "[parameters('eventHubPolicyName')]"
+          }
+        ]
       }
     }
   ],
