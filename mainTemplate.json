@@ -8,18 +8,6 @@
     "storageAccountType": {
       "type": "string"
     },
-    "securityAutomationNamePrefix": {
-      "type": "string"
-    },
-    "eventHubConnectionString": {
-      "type": "string"
-    },
-    "eventHubResourceId": {
-      "type": "string"
-    },
-    "eventHubPolicyName": {
-      "type": "string"
-    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]"
@@ -28,44 +16,9 @@
       "type": "array",
       "defaultValue": [
         {
-          "id": "/providers/Microsoft.Authorization/policyDefinitions/404c3081-a854-4457-ae30-26a93ef643f9",
-          "name": "Secure transfer to storage accounts should be enabled",
-          "description": "Audit requirement of Secure transfer in your storage account. Secure transfer is an option that forces your storage account to accept requests only from secure connections (HTTPS). Use of HTTPS ensures authentication between the server and the service and protects data in transit from network layer attacks such as man-in-the-middle, eavesdropping, and session-hijacking"
-        },
-        {
-          "id": "/providers/Microsoft.Authorization/policyDefinitions/34c877ad-507e-4c82-993e-3452a6e0ad3c",
-          "name": "Storage accounts should restrict network access",
-          "description": "Network access to storage accounts should be restricted. Configure network rules so only applications from allowed networks can access the storage account. To allow connections from specific internet or on-premises clients, access can be granted to traffic from specific Azure virtual networks or to public internet IP address ranges"
-        },
-        {
-          "id": "/providers/Microsoft.Authorization/policyDefinitions/2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "name": "Storage accounts should restrict network access using virtual network rules",
-          "description": "Protect your storage accounts from potential threats using virtual network rules as a preferred method instead of IP-based filtering. Disabling IP-based filtering prevents public IPs from accessing your storage accounts."
-        },
-        {
-          "id": "/providers/Microsoft.Authorization/policyDefinitions/6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "name": "Storage accounts should use private link",
-          "description": "Azure Private Link lets you connect your virtual network to Azure services without a public IP address at the source or destination. The Private Link platform handles the connectivity between the consumer and services over the Azure backbone network. By mapping private endpoints to your storage account, data leakage risks are reduced. Learn more about private links at - https://aka.ms/azureprivatelinkoverview"
-        },
-        {
-          "id": "/providers/Microsoft.Authorization/policyDefinitions/308fbb08-4ab8-4e67-9b29-592e93fb94fa",
-          "name": "Azure Defender for Storage should be enabled",
-          "description": "Azure Defender for Storage provides detections of unusual and potentially harmful attempts to access or exploit storage accounts."
-        },
-        {
-          "id": "/providers/Microsoft.Authorization/policyDefinitions/4fa4b6c0-31ca-4c0d-b10d-24b96f62a751",
-          "name": "Storage account public access should be disallowed",
-          "description": "Anonymous public read access to containers and blobs in Azure Storage is a convenient way to share data but might present security risks. To prevent data breaches caused by undesired anonymous access, Microsoft recommends preventing public access to a storage account unless your scenario requires it."
-        },
-        {
-          "id": "/providers/Microsoft.Authorization/policyDefinitions/6fac406b-40ca-413b-bf8e-0bf964659c25",
-          "name": "Storage accounts should use customer-managed key for encryption",
-          "description": "Secure your storage account with greater flexibility using customer-managed keys. When you specify a customer-managed key, that key is used to protect and control access to the key that encrypts your data. Using customer-managed keys provides additional capabilities to control rotation of the key encryption key or cryptographically erase data"
-        },
-        {
-          "id": "/providers/Microsoft.Authorization/policyDefinitions/37e0d2fe-28a5-43d6-a273-67d37d1f5606",
-          "name": "Storage accounts should be migrated to new Azure Resource Manager resources",
-          "description": "Use new Azure Resource Manager for your storage accounts to provide security enhancements such as: stronger access control (RBAC), better auditing, Azure Resource Manager based deployment and governance, access to managed identities, access to key vault for secrets, Azure AD-based authentication and support for tags and resource groups for easier security management"
+          "id": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
+          "name": "Azure Security Benchmark",
+          "description": "The Azure Security Benchmark initiative represents the policies and controls implementing security recommendations defined in Azure Security Benchmark v2, see https://aka.ms/azsecbm. This also serves as the Azure Security Center default policy initiative. You can directly assign this initiative, or manage its policies and compliance results within Azure Security Center."
         }
       ],
       "metadata": {
@@ -81,8 +34,7 @@
     }
   },
   "variables": {
-    "storageAccountName": "[concat(parameters('storageAccountNamePrefix'), uniqueString(resourceGroup().id))]",
-    "securityAutomationName": "[concat(parameters('securityAutomationNamePrefix'), uniqueString(resourceGroup().id))]"
+    "storageAccountName": "[concat(parameters('storageAccountNamePrefix'), uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
@@ -99,7 +51,7 @@
     {
       "type": "Microsoft.Authorization/policyAssignments",
       "name": "[concat(parameters('policyAssignmentNamePrefix'), uniqueString(string(CopyIndex())))]",
-      "apiVersion": "2019-09-01",
+      "apiVersion": "2020-09-01",
       "properties": {
         "scope": "[subscriptionResourceId('Microsoft.Resources/resourceGroups', resourceGroup().name)]",
         "policyDefinitionId": "[parameters('policyDefinitions')[CopyIndex()].id]",
@@ -110,42 +62,6 @@
       "copy": {
         "name": "policyAssignments",
         "count": "[length(parameters('policyDefinitions'))]"
-      }
-    },
-    {
-      "type": "Microsoft.Security/automations",
-      "apiVersion": "2019-01-01-preview",
-      "name": "[variables('securityAutomationName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "scopes": [
-          {
-            "scopePath": "[resourceGroup().id]",
-            "description": "Security Center resource group"
-          }
-        ],
-        "sources": [
-          {
-            "eventSource": "Alerts"
-          },
-          {
-            "eventSource": "Assessments"
-          },
-          {
-            "eventSource": "RegulatoryComplianceAssessment"
-          },
-          {
-            "eventSource": "SecureScores"
-          }
-        ],
-        "actions": [
-          {
-            "actionType": "EventHub",
-            "connectionString": "[parameters('eventHubConnectionString')]",
-            "eventHubResourceId": "[parameters('eventHubResourceId')]",
-            "sasPolicyName": "[parameters('eventHubPolicyName')]"
-          }
-        ]
       }
     }
   ],

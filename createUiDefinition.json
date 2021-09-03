@@ -28,36 +28,6 @@
             "constraints": {
               "allowedTypes": ["Premium_LRS", "Standard_LRS", "Standard_GRS"]
             }
-          },
-          {
-            "name": "securityAutomationNamePrefix",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Security automation name prefix",
-            "defaultValue": "CompliancePoC"
-          },
-          {
-            "name": "eventHubConnectionString",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Event Hub connection string",
-            "constraints": {
-              "required": true
-            }
-          },
-          {
-            "name": "eventHubResourceId",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Event Hub resource id",
-            "constraints": {
-              "required": true
-            }
-          },
-          {
-            "name": "eventHubPolicyName",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Event Hub policy name",
-            "constraints": {
-              "required": true
-            }
           }
         ]
       }
@@ -65,10 +35,6 @@
     "outputs": {
       "storageAccountNamePrefix": "[steps('settings').storageAccounts.prefix]",
       "storageAccountType": "[steps('settings').storageAccounts.type]",
-      "securityAutomationNamePrefix": "[steps('settings').securityAutomationNamePrefix]",
-      "eventHubConnectionString": "[steps('settings').eventHubConnectionString]",
-      "eventHubResourceId": "[steps('settings').eventHubResourceId]",
-      "eventHubPolicyName": "[steps('settings').eventHubPolicyName]",
       "location": "[location()]"
     }
   }
