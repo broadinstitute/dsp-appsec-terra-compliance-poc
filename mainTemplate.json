@@ -19,6 +19,16 @@
           "id": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
           "name": "Azure Security Benchmark",
           "description": "The Azure Security Benchmark initiative represents the policies and controls implementing security recommendations defined in Azure Security Benchmark v2, see https://aka.ms/azsecbm. This also serves as the Azure Security Center default policy initiative. You can directly assign this initiative, or manage its policies and compliance results within Azure Security Center."
+        },
+        {
+          "id": "/providers/Microsoft.Authorization/policySetDefinitions/612b5213-9160-4969-8578-1518bd2a000c",
+          "name": "CIS Microsoft Azure Foundations Benchmark v1.3.0",
+          "description": "This initiative includes policies that address a subset of CIS Microsoft Azure Foundations Benchmark recommendations. Additional policies will be added in upcoming releases. For more information, visit https://aka.ms/cisazure130-initiative."
+        },
+        {
+          "id": "/providers/Microsoft.Authorization/policySetDefinitions/e95f5a9f-57ad-4d03-bb0b-b1d16db93693",
+          "name": "FedRAMP Moderate",
+          "description": "This initiative includes policies that address a subset of FedRAMP Moderate controls. Additional policies will be added in upcoming releases. For more information, visit https://aka.ms/fedrampm-initiative."
         }
       ],
       "metadata": {
@@ -50,8 +60,9 @@
     },
     {
       "type": "Microsoft.Authorization/policyAssignments",
-      "name": "[concat(parameters('policyAssignmentNamePrefix'), uniqueString(string(CopyIndex())))]",
       "apiVersion": "2020-09-01",
+      "name": "[concat(parameters('policyAssignmentNamePrefix'), uniqueString(string(CopyIndex())))]",
+      "location": "[parameters('location')]",
       "properties": {
         "scope": "[subscriptionResourceId('Microsoft.Resources/resourceGroups', resourceGroup().name)]",
         "policyDefinitionId": "[parameters('policyDefinitions')[CopyIndex()].id]",
@@ -62,6 +73,9 @@
       "copy": {
         "name": "policyAssignments",
         "count": "[length(parameters('policyDefinitions'))]"
+      },
+      "identity": {
+        "type": "SystemAssigned"
       }
     }
   ],
