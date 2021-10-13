@@ -1,4 +1,4 @@
-# PoC of Infrastructure Security Compliance for Terra on Azure 
+# PoC of Infra Security Compliance for Terra on Azure 
 
 This Managed App deployment template provides an example of how to integrate Azure Policy sets for security compliance in Terra.
 The following _Policy Sets_ are included:
