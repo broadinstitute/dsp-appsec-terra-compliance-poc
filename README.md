@@ -14,7 +14,7 @@ However, a few controls are applied in an "enforcement" mode, which _may_ modify
 
 Note that applying these Policy Sets as part of the Managed App deployment template serves several goals:
 - The compliance controls are applied/enforced/monitored from the very beginning, before other resources have a chance to be deployed outside of the initial deployment, thus serving as a "gate" for it.
-- These Policy Sets are maintained by Azure and are thus considered "complete", meaning we have an easier time satisfying our compliance audits, because no controls are excluded or included from these "official" sets. In other words, we can defer to these sets for most of our infrastructure compliance reporting requirements.
+- These Policy Sets are maintained by Microsoft as a vendor, and are thus considered "complete". As a result, we have an easier time satisfying our compliance audits, because no controls are excluded or included from these "official" sets. In other words, we can defer to these sets for most of our infrastructure compliance reporting requirements.
 - It's seamless and easy to apply as a "serverless" solution, since no additional infrastructure or user interaction is required for it to be applied.
 
 Here's how the resulting ASC Recommendations based on these sets look like:
@@ -22,4 +22,4 @@ Here's how the resulting ASC Recommendations based on these sets look like:
 
 Note that these controls are reported in a _centralized_ fashion and are thus easy for the publisher to review/scope down across all tenants. However, it _may_ take up to 24-48 hours for the findings to be _visible_ in publisher's ASC portal.
 
-Also note that there _may_ be additional requirements we'll ask select customers to apply in the future, e.g. to enable Azure Sentinel at Subscription level, for a more in-depth security monitoring.
+Also note that there _may_ be additional requirements we'll ask select customers to accept/satisfy in the future, e.g. to enable Azure Sentinel at Subscription level, for a more in-depth security monitoring.
