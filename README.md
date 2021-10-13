@@ -13,7 +13,7 @@ Note that _most_ of the policies in these sets work in an "audit only" mode, mea
 However, a few controls are applied in an "enforcement" mode, which _may_ modify future deployments or prevent some resources from being deployed, if there're any deviations. You can check which controls are enforced using the links above (look for _Deny_, _modify_ and _deployIfNotExists_ policy effects).
 
 Note that applying these Policy Sets as part of the Managed App deployment template serves several goals:
-- The compliance controls are applied/enforced/monitored from the very beginning, before other resources have a chance to be deployed outside of the initial deployment, thus serving as a "gate" for it.
+- The compliance controls are applied/enforced/monitored from the very beginning, before other resources have a chance to be deployed outside of the initial deployment, thus serving as a "gate" for those.
 - These Policy Sets are maintained by Microsoft as a vendor, and are thus considered "complete". As a result, we have an easier time satisfying our compliance audits, because no controls are excluded or included from these "official" sets. In other words, we can defer to these sets for most of our infrastructure compliance reporting requirements.
 - It's seamless and easy to apply as a "serverless" solution, since no additional infrastructure or user interaction is required for it to be applied.
 
