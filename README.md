@@ -22,4 +22,4 @@ Here's how the resulting ASC Recommendations based on these sets look like:
 
 Note that these controls are reported in a _centralized_ fashion and are thus easy for the publisher to review/scope down across all tenants. However, it _may_ take up to 24-48 hours for the findings to be _visible_ in publisher's ASC portal.
 
-Also note that there _may_ be additional requirements we'll ask select customers to accept/satisfy in the future, e.g. to enable Azure Sentinel at Subscription level, for a more in-depth security monitoring.
+Also note that there _may_ be additional requirements we'll ask select customers to accept/satisfy in the future, e.g. to enable Azure Sentinel at Subscription level, for a more in-depth security monitoring in compliance-sensitive environments.
