@@ -14,7 +14,7 @@ However, a few controls are applied in an "enforcement" mode, which _may_ modify
 
 Note that applying these Policy Sets as part of the Managed App deployment template serves multiple goals:
 - The compliance controls are applied/enforced/monitored from the very beginning, before other resources have a chance to be deployed outside of the initial deployment.
-- This set of controls serves as a "gate" for the initial deployment - i.e., the user _must_ enable the RP as noted above (otherwise, the deployment fails).
+- This set of controls serves as a "gate" for the initial deployment - e.g., the user _must_ enable the RP as noted above (otherwise, the deployment fails).
 - These Policy Sets are maintained by Azure and are thus considered "complete", meaning we have an easier time satisfying our compliance audits, because no controls are excluded or included from these "official" sets. In other words, we can defer to these sets for most of our infrastructure compliance reporting requirements.
 - It's easy to apply as a "serverless" solution, since no additional infrastructure needs to exist for it to be deployed.
 
