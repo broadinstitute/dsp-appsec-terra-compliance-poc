@@ -2,7 +2,7 @@
 
 This Managed App deployment template provides an example of how to integrate Azure Policy sets for security compliance in Terra.
 The following _Policy Sets_ are included:
-- [Azure Security Benchmark](https://docs.microsoft.com/en-us/security/benchmark/azure/introduction) - this set is technically enabled by default in Azure, but we need to explicitly enable it here so that we get the results reported centrally in the cross-tenant Azure Security Center (ASC) located in the publisher tenant
+- [Azure Security Benchmark](https://docs.microsoft.com/en-us/azure/governance/policy/samples/azure-security-benchmark) - this set is technically enabled by default in Azure, but we need to explicitly enable it here so that we get the results reported centrally in the cross-tenant Azure Security Center (ASC) located in the publisher tenant
 - [CIS Microsoft Azure Foundations Benchmark 1.3.0](https://docs.microsoft.com/en-us/azure/governance/policy/samples/cis-azure-1-3-0) - provides a standards-based set of security controls that are valued by compliance
 - [Azure FedRAMP Moderate Regulatory Compliance](https://docs.microsoft.com/en-us/azure/governance/policy/samples/fedramp-moderate) - strictest set of formal compliance requirements for Terra
 
