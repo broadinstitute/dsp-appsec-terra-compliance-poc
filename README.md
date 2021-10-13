@@ -10,7 +10,7 @@ There is a significant overlap between these, but they all in combination should
 
 Note that _most_ of the policies in these sets work in an "audit only" mode, meaning that they will not interfere with your workloads; they are just used for compliance reporting in ASC (and ultimately will need to be enforced via standard development/DevSecOps practices).
 
-However, a few controls are applied in an "enforcement" mode, which _may_ modify your existing deployments, if there're any deviations. For an "enforcement" mode to work though, a customer Subscription administrator **_must_ register `Microsoft.Security` Resource Provider (RP)** for the underlying customer subscription first. This is not any different from the other RP registrations like `Microsoft.Storage` required for Terra on Azure deployments, though.
+However, a few controls are applied in an "enforcement" mode, which _may_ modify your existing deployments, if there're any deviations. For an "enforcement" mode to work though, a customer Subscription administrator **_must_ first register `Microsoft.Security` Resource Provider (RP)** for the underlying Subscription. This is not any different from the other RP registrations like `Microsoft.Storage` required for Terra on Azure deployments, though.
 
 Note that applying these Policy Sets as part of the Managed App deployment template serves multiple goals:
 - The compliance controls are applied/enforced/monitored from the very beginning, before other resources have a chance to be deployed outside of the initial deployment.
