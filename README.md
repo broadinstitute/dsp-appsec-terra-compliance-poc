@@ -8,7 +8,7 @@ The following _Azure Policy Sets_ are included:
 
 There is a significant overlap between these, but they all in combination should provide a good set of controls that will help us satisfy our FedRAMP Moderate (and possibly other) infrastructure compliance requirements.
 
-Note that _most_ of the policies in these sets work in an "audit only" mode, meaning that they will not interfere with deployments of Azure resources; they are just used for compliance reporting in ASC (and ultimately will need to be enforced via standard development/DevSecOps practices).
+Note that _most_ of the policies in these sets work in an "audit only" mode, meaning that they will not interfere with deployments of Azure resources. They are just used for compliance reporting in ASC, and ultimately will need to be enforced via standard development/DevSecOps practices.
 
 However, a few controls are applied in an "enforcement" mode, which _may_ modify future deployments or prevent some resources from being deployed, if there're any deviations. You can check which controls are enforced using the links above (look for _Deny_, _modify_ and _deployIfNotExists_ policy effects).
 
