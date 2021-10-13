@@ -10,13 +10,12 @@ There is a significant overlap between these, but they all in combination should
 
 Note that _most_ of the policies in these sets work in an "audit only" mode, meaning that they will not interfere with your workloads; they are just used for compliance reporting in ASC (and ultimately will need to be enforced via standard development/DevSecOps practices).
 
-However, a few controls are applied in an "enforcement" mode, which _may_ modify your existing deployments, if there're any deviations. For an "enforcement" mode to work though, a customer Subscription administrator **_must_ first register `Microsoft.Security` Resource Provider (RP)** for the underlying Subscription. This is not any different from the other RP registrations like `Microsoft.Storage` required for Terra on Azure deployments, though.
+However, a few controls are applied in an "enforcement" mode, which _may_ modify your existing deployments, if there're any deviations. You can check which controls are enforced using the links above (look for _Deny_, _modify_ and _deployIfNotExists_ policy effects).
 
-Note that applying these Policy Sets as part of the Managed App deployment template serves multiple goals:
-- The compliance controls are applied/enforced/monitored from the very beginning, before other resources have a chance to be deployed outside of the initial deployment.
-- This set of controls serves as a "gate" for the initial deployment - e.g., the user _must_ enable the RP as noted above (otherwise, the deployment fails).
+Note that applying these Policy Sets as part of the Managed App deployment template serves several goals:
+- The compliance controls are applied/enforced/monitored from the very beginning, before other resources have a chance to be deployed outside of the initial deployment, thus serving as a "gate" for it.
 - These Policy Sets are maintained by Azure and are thus considered "complete", meaning we have an easier time satisfying our compliance audits, because no controls are excluded or included from these "official" sets. In other words, we can defer to these sets for most of our infrastructure compliance reporting requirements.
-- It's easy to apply as a "serverless" solution, since no additional infrastructure needs to exist for it to be deployed.
+- It's seamless and easy to apply as a "serverless" solution, since no additional infrastructure or user interaction is required for it to be applied.
 
 Here's how the resulting ASC Recommendations based on these sets look like:
 ![image](https://user-images.githubusercontent.com/137337/137196157-4391bbe1-0f04-4e51-ab50-25230c702609.png)
