@@ -1,4 +1,4 @@
-# dsp-appsec-terra-compliance-poc
+# PoC of Infrastructure Security Compliance for Terra on Azure 
 
 This Managed App deployment template provides an example of how to integrate Azure Policy sets for security compliance in Terra.
 The following _Policy Sets_ are included:
@@ -14,11 +14,11 @@ However, a few controls are applied in an "enforcement" mode, which _may_ modify
 
 Note that applying these Policy Sets as part of the Managed App deployment template serves multiple goals:
 - The compliance controls are applied/enforced/monitored from the very beginning, before other resources have a chance to be deployed outside of the initial deployment.
-- This set of controls serves as a "gate" for the initial deployment - i.e. the user _must_ enable the RP as noted above (otherwise, the deployment fails).
+- This set of controls serves as a "gate" for the initial deployment - i.e., the user _must_ enable the RP as noted above (otherwise, the deployment fails).
 - These Policy Sets are maintained by Azure and are thus considered "complete", meaning we have an easier time satisfying our compliance audits, because no controls are excluded or included from these "official" sets. In other words, we can defer to these sets for most of our infrastructure compliance reporting requirements.
 - It's easy to apply as a "serverless" solution, since no additional infrastructure needs to exist for it to be deployed.
 
 Here's how the resulting ASC Recommendations based on these sets look like:
 ![image](https://user-images.githubusercontent.com/137337/137196157-4391bbe1-0f04-4e51-ab50-25230c702609.png)
 
-Note that these controls are reported in a _centralized_ fashion, and are thus easy for the publisher to review/scope down across all tenants. However, it _may_ take up to 24-48 hours for the findings to be _visible_ in publisher's ASC portal.
+Note that these controls are reported in a _centralized_ fashion and are thus easy for the publisher to review/scope down across all tenants. However, it _may_ take up to 24-48 hours for the findings to be _visible_ in publisher's ASC portal.
