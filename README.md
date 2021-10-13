@@ -21,4 +21,4 @@ Note that applying these Policy Sets as part of the Managed App deployment templ
 Here's how the resulting ASC Recommendations based on these sets look like:
 ![image](https://user-images.githubusercontent.com/137337/137196157-4391bbe1-0f04-4e51-ab50-25230c702609.png)
 
-Note that these controls are reported in a _centralized_ fasion, and are thus easy for the publisher to review/scope down across all tenants. However, it _may_ take up to 24-48 hours for the findings to be _visible_ in publisher's ASC portal.
+Note that these controls are reported in a _centralized_ fashion, and are thus easy for the publisher to review/scope down across all tenants. However, it _may_ take up to 24-48 hours for the findings to be _visible_ in publisher's ASC portal.
